@@ -18,6 +18,7 @@ pipeline {
         stage('Static Code Analysis') {
             steps {
                 echo "Analyzing code quality using a static analysis tool."
+                echo "Done"
             }
         }
         stage('Security Analysis') {
