@@ -11,6 +11,8 @@ pipeline {
             steps {
                 echo "Executing unit tests."
                 echo "Executing integration tests."
+                echo "Execution done."
+                
             }
         }
         stage('Static Code Analysis') {
