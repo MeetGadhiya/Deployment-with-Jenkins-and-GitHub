@@ -1,36 +1,36 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Source Code Checkout') {
             steps {
-                echo "Fetching the source code from the directory path specified by the environment variable."
-                echo "Compiling the code and generating any necessary artifacts."
+                echo "Retrieving the source code from the directory path defined by the environment variable."
+                echo "Building the code and creating necessary artifacts."
             }
         }
-        stage('Unit and Integration Tests') {
+        stage('Testing') {
             steps {
-                echo "Running unit tests."
-                echo "Running integration tests."
+                echo "Executing unit tests."
+                echo "Executing integration tests."
             }
         }
-        stage('Code Analysis') {
+        stage('Static Code Analysis') {
             steps {
-                echo "Checking the quality of the code using a code analysis tool."
+                echo "Evaluating code quality using a static analysis tool."
             }
         }
-        stage('Security Scan') {
+        stage('Security Assessment') {
             steps {
-                echo "Identifying vulnerabilities using a security scanning tool."
+                echo "Detecting vulnerabilities using a security scanning tool."
             }
         }
-        stage('Integration Tests on Staging') {
+        stage('Staging Environment Tests') {
             steps {
-                echo "Running integration tests on the staging environment."
+                echo "Performing integration tests in the staging environment."
             }
         }
-        stage('Deploy to Production') {
+        stage('Production Deployment') {
             steps {
-                echo "Deploying the code to the production environment."
+                echo "Releasing the code to the production environment."
             }
         }
     }
@@ -40,17 +40,17 @@ pipeline {
                 attachLog: true,
                 compressLog: true,
                 to: 'meetgadhiya8888@gmail.com',
-                body: "Log is available at $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log",
-                subject: "Production Deployment is Successful - Jenkins"
+                body: "You can find the log at $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log",
+                subject: "Successful Production Deployment - Jenkins"
             )
         }
         failure {
             emailext(
                 attachLog: true,
                 compressLog: true,
-                to: 'meetgadhiya8888@@gmail.com',
-                body: "Log is available at $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log",
-                subject: "Production Deployment Failed - Jenkins"
+                to: 'meetgadhiya8888@gmail.com',
+                body: "You can find the log at $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log",
+                subject: "Failed Production Deployment - Jenkins"
             )
         }
     }
