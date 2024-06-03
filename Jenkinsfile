@@ -1,6 +1,3 @@
-Sure, here is the formatted Jenkins pipeline script:
-
-```groovy
 pipeline {
     agent any
     stages {
@@ -56,4 +53,3 @@ pipeline {
         }
     }
 }
-```
