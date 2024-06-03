@@ -1,3 +1,6 @@
+Sure, here is the formatted Jenkins pipeline script:
+
+```groovy
 pipeline {
     agent any
     stages {
@@ -12,7 +15,6 @@ pipeline {
                 echo "Executing unit tests."
                 echo "Executing integration tests."
                 echo "Execution done."
-                
             }
         }
         stage('Static Code Analysis') {
@@ -39,22 +41,19 @@ pipeline {
     }
     post {
         success {
-            emailext(
-                attachLog: true,
-                compressLog: true,
-                to: 'meetgadhiya8888@gmail.com',
-                body: "The build log can be found at \$JENKINS_HOME/jobs/\$JOB_NAME/builds/lastSuccessfulBuild/log",
-                subject: 'Deployment to Production Successful - Jenkins'
-            )
+            emailext attachLog: true,
+            compressLog: true,
+            to: 'meetgadhiya8888@gmail.com',
+            body: 'Log is available at $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log',
+            subject: 'Production Deployment is Successful - Jenkins'
         }
-        failure {
-            emailext(
-                attachLog: true,
-                compressLog: true,
-                to: 'meetgadhiya8888@gmail.com',
-                body: "The build log can be found at \$JENKINS_HOME/jobs/\$JOB_NAME/builds/lastSuccessfulBuild/log",
-                subject: "Deployment to Production Failed - Jenkins"
-            )
+        failure {  
+            emailext attachLog: true,
+            compressLog: true,
+            to: 'meetgadhiya8888@gmail.com',
+            body: 'Log is available at $JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log',
+            subject: "Production Deployment has Failed - Jenkins"
         }
     }
 }
+```
